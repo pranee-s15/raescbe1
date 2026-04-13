@@ -65,8 +65,8 @@ const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
   await connectDb();
-  await ensureDemoAdmin();
-  await ensureSampleProducts();
+  // await ensureDemoAdmin();
+  // await ensureSampleProducts();
 
   app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
