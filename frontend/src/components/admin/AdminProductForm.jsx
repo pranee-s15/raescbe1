@@ -57,7 +57,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel, isSaving }) => {
     <form onSubmit={handleSubmit} className="space-y-5 rounded-[2rem] border border-boutique-gold/10 bg-white p-6 shadow-soft">
       <div>
         <p className="text-[10px] uppercase tracking-[0.3em] text-boutique-gold">Product Management</p>
-        <h3 className="mt-2 font-section text-[1.9rem] leading-tight tracking-[-0.02em] text-boutique-maroon">
+        <h3 className="mt-2 font-section text-[1.75rem] leading-tight tracking-[-0.02em] text-boutique-maroon md:text-[1.95rem]">
           {product ? 'Edit boutique product' : 'Add boutique product'}
         </h3>
       </div>

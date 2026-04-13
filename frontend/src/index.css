@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +10,9 @@
   }
 
   body {
+    
     @apply bg-boutique-background font-body text-boutique-ink;
+    overflow-x: auto;
     background-image:
       radial-gradient(circle at top left, rgba(212, 175, 55, 0.11), transparent 28%),
       radial-gradient(circle at bottom right, rgba(107, 15, 26, 0.08), transparent 30%);
@@ -18,6 +20,7 @@
 
   * {
     @apply antialiased;
+    box-sizing: border-box;
   }
 }
 

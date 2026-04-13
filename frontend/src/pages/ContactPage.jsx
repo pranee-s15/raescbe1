@@ -6,15 +6,15 @@ import SectionHeading from '../components/shared/SectionHeading';
 import { contactDetails } from '../data/site';
 
 const ContactPage = () => (
-  <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
+  <section className="mx-auto max-w-7xl px-4 py-16 md:px-6 lg:px-8">
     <SectionHeading
       eyebrow="Contact"
       title="Visit the boutique or plan a private styling conversation"
       description="Reach us for festive styling, fabric guidance, and appointment-based boutique support."
     />
 
-    <div className="mt-10 grid gap-8 lg:grid-cols-[0.95fr,1.05fr]">
-      <div className="space-y-6 rounded-[2rem] bg-white p-8 shadow-soft">
+    <div className="mt-10 grid gap-5 md:grid-cols-[0.95fr,1.05fr] md:items-start md:gap-8">
+      <div className="space-y-6 rounded-[1.7rem] bg-white p-5 shadow-soft md:rounded-[2rem] md:p-8">
         {[
           { icon: MapPin, label: 'Address', value: contactDetails.address },
           { icon: Phone, label: 'Phone', value: contactDetails.phone },
@@ -42,30 +42,30 @@ const ContactPage = () => (
             </div>
           </div>
 
-          <div className="relative mt-6 grid gap-4 md:grid-cols-[1.1fr,0.9fr]">
-            <div className="overflow-hidden rounded-[1.5rem] bg-white/8">
+          <div className="relative mt-6 grid grid-cols-2 gap-3 md:grid-cols-[1.1fr,0.9fr] md:gap-4">
+            <div className="overflow-hidden rounded-[1.35rem] bg-white/8 md:rounded-[1.5rem]">
               <img
                 src={contactDesk}
                 alt="Raes Boutique consultation desk"
-                className="h-[280px] w-full object-cover object-center"
+                className="h-[240px] w-full object-cover object-center md:h-[280px]"
               />
             </div>
-            <div className="overflow-hidden rounded-[1.5rem] bg-white/8">
+            <div className="overflow-hidden rounded-[1.35rem] bg-white/8 md:rounded-[1.5rem]">
               <img
                 src={contactDisplay}
                 alt="Raes Boutique display wall"
-                className="h-[280px] w-full object-cover object-center"
+                className="h-[240px] w-full object-cover object-center md:h-[280px]"
               />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-[2rem] bg-white p-4 shadow-soft">
+      <div className="overflow-hidden rounded-[1.7rem] bg-white p-4 shadow-soft md:rounded-[2rem]">
         <iframe
           title="Raes Boutique location"
           src="https://www.google.com/maps?q=G1,%206th%20St,%20Kuppakonam%20Pudur,%20Coimbatore,%20Tamil%20Nadu%20641038&z=16&output=embed"
-          className="h-[560px] w-full rounded-[1.6rem]"
+          className="h-[420px] w-full rounded-[1.6rem] md:h-[560px]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />

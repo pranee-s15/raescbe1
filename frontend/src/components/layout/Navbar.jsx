@@ -44,13 +44,13 @@ const Navbar = () => {
           : 'top-9 bg-boutique-background/92 backdrop-blur-lg'
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 text-boutique-maroon md:px-8">
-        <Link to="/" className="flex items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 text-boutique-maroon md:gap-4 md:px-6 md:py-4 lg:px-8">
+        <Link to="/" className="min-w-0 flex-1 lg:flex-none">
           <LogoMark
-            className="h-16 w-16"
+            className="h-12 w-12 md:h-16 md:w-16"
             withText
-            titleClassName="text-boutique-gold text-[2rem]"
-            subtitleClassName="text-boutique-maroon text-[1.45rem]"
+            titleClassName="text-boutique-gold text-[1.35rem] md:text-[2rem]"
+            subtitleClassName="text-boutique-maroon text-[1rem] md:text-[1.45rem]"
           />
         </Link>
 
@@ -131,7 +131,7 @@ const Navbar = () => {
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
-          className="rounded-full bg-white p-3 text-boutique-maroon shadow-soft lg:hidden"
+          className="shrink-0 rounded-full bg-white p-3 text-boutique-maroon shadow-soft lg:hidden"
         >
           {open ? <X size={18} /> : <Menu size={18} />}
         </button>

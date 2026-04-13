@@ -9,7 +9,7 @@ const StatCard = ({ label, value, accent = false }) => (
     <p className={`text-[10px] uppercase tracking-[0.3em] ${accent ? 'text-boutique-gold/85' : 'text-boutique-gold'}`}>
       {label}
     </p>
-    <p className="mt-2.5 font-section text-[1.55rem] leading-none tracking-[-0.03em] [font-variant-numeric:tabular-nums] md:text-[1.75rem]">
+    <p className="mt-2.5 font-section text-[1.45rem] leading-none tracking-[-0.03em] [font-variant-numeric:tabular-nums] md:text-[1.65rem]">
       {value}
     </p>
   </div>

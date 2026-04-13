@@ -12,7 +12,7 @@ const Layout = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-boutique-background text-boutique-ink">
+    <div className="min-h-screen overflow-x-hidden bg-boutique-background text-boutique-ink">
       <Banner />
       <Navbar />
       <main>

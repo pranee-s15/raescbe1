@@ -480,9 +480,9 @@ const CheckoutPage = () => {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
+    <section className="mx-auto max-w-7xl px-4 py-16 md:px-6 lg:px-8">
       <BackButton fallbackTo="/collections" label="Back" />
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div className="flex flex-wrap items-end justify-between gap-4 md:gap-6">
         <SectionHeading
           eyebrow="Checkout"
           title="Boutique checkout"
@@ -493,9 +493,10 @@ const CheckoutPage = () => {
         </div>
       </div>
 
-      <div className="mt-10 grid gap-8 xl:grid-cols-[1fr,360px]">
-        <div>
-          <div className="mb-6 grid gap-3 sm:grid-cols-4">
+      <div className="mt-10 overflow-x-auto pb-2">
+        <div className="flex min-w-max items-start gap-4 xl:min-w-0 xl:grid xl:grid-cols-[minmax(0,1fr),360px] xl:gap-8">
+        <div className="min-w-[540px] flex-1 xl:min-w-0">
+          <div className="mb-6 flex gap-3 overflow-x-auto pb-2 sm:pb-0">
             {checkoutSteps.map((step) => {
               const isActive = step.id === currentStep;
               const isCompleted = step.id < currentStep;
@@ -503,7 +504,7 @@ const CheckoutPage = () => {
               return (
                 <div
                   key={step.id}
-                  className={`rounded-[1.4rem] px-4 py-4 transition ${
+                  className={`min-w-[160px] shrink-0 rounded-[1.4rem] px-4 py-4 transition ${
                     isActive
                       ? 'bg-boutique-maroon text-white shadow-soft'
                       : isCompleted
@@ -538,7 +539,7 @@ const CheckoutPage = () => {
           </form>
         </div>
 
-        <aside className="h-fit rounded-[2rem] bg-white p-6 shadow-soft xl:sticky xl:top-28">
+        <aside className="h-fit min-w-[250px] rounded-[1.7rem] bg-white p-4 shadow-soft md:min-w-[340px] md:rounded-[2rem] md:p-6 xl:sticky xl:top-28 xl:min-w-0">
           <p className="text-xs uppercase tracking-[0.32em] text-boutique-gold">Quick Summary</p>
           <div className="mt-5 space-y-5">
             {items.map((item) => (
@@ -575,6 +576,7 @@ const CheckoutPage = () => {
             Current step: <span className="font-medium text-boutique-maroon">{checkoutSteps[currentStep - 1].title}</span>
           </div>
         </aside>
+        </div>
       </div>
     </section>
   );

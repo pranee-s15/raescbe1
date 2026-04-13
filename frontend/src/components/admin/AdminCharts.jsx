@@ -75,7 +75,7 @@ const AdminCharts = ({ stats, analytics, orders = [] }) => {
         <div className="rounded-[2rem] border border-boutique-gold/10 bg-white p-6 shadow-soft">
           <div className="mb-6">
             <p className="text-[10px] uppercase tracking-[0.3em] text-boutique-gold">Sales Charts</p>
-            <h3 className="mt-2 font-section text-[1.9rem] leading-tight tracking-[-0.02em] text-boutique-maroon">
+            <h3 className="mt-2 font-section text-[1.45rem] leading-tight tracking-[-0.02em] text-boutique-maroon md:text-[1.7rem]">
               Monthly revenue
             </h3>
           </div>
@@ -99,7 +99,7 @@ const AdminCharts = ({ stats, analytics, orders = [] }) => {
 
         <div className="rounded-[2rem] border border-boutique-gold/10 bg-white p-6 shadow-soft">
           <p className="text-[10px] uppercase tracking-[0.3em] text-boutique-gold">Top Products</p>
-          <h3 className="mt-2 font-section text-[1.9rem] leading-tight tracking-[-0.02em] text-boutique-maroon">
+          <h3 className="mt-2 font-section text-[1.45rem] leading-tight tracking-[-0.02em] text-boutique-maroon md:text-[1.7rem]">
             Best performers
           </h3>
           <div className="mt-6 space-y-4">
@@ -108,7 +108,7 @@ const AdminCharts = ({ stats, analytics, orders = [] }) => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.24em] text-boutique-gold">#{index + 1}</p>
-                    <h4 className="mt-2 font-section text-[1.25rem] leading-snug tracking-[-0.02em] text-boutique-maroon">
+                    <h4 className="mt-2 font-section text-[1.08rem] leading-snug tracking-[-0.02em] text-boutique-maroon">
                       {item._id}
                     </h4>
                   </div>
@@ -127,7 +127,7 @@ const AdminCharts = ({ stats, analytics, orders = [] }) => {
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-boutique-gold">Daily Revenue</p>
-            <h3 className="mt-2 font-section text-[1.9rem] leading-tight tracking-[-0.02em] text-boutique-maroon">
+            <h3 className="mt-2 font-section text-[1.45rem] leading-tight tracking-[-0.02em] text-boutique-maroon md:text-[1.7rem]">
               Revenue by date
             </h3>
             <p className="mt-2 text-sm text-boutique-ink/60">
@@ -151,19 +151,19 @@ const AdminCharts = ({ stats, analytics, orders = [] }) => {
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <div className="rounded-[1.45rem] bg-boutique-background p-4">
                 <p className="text-[10px] uppercase tracking-[0.24em] text-boutique-gold">Selected Date Revenue</p>
-                <p className="mt-3 font-section text-[1.65rem] leading-none tracking-[-0.03em] text-boutique-maroon [font-variant-numeric:tabular-nums]">
+                <p className="mt-3 font-body text-[1.2rem] font-semibold leading-none tracking-[-0.02em] text-boutique-maroon [font-variant-numeric:tabular-nums]">
                   Rs. {Math.round(selectedRevenue)}
                 </p>
               </div>
               <div className="rounded-[1.45rem] bg-boutique-background p-4">
                 <p className="text-[10px] uppercase tracking-[0.24em] text-boutique-gold">Orders Count</p>
-                <p className="mt-3 font-section text-[1.65rem] leading-none tracking-[-0.03em] text-boutique-maroon [font-variant-numeric:tabular-nums]">
+                <p className="mt-3 font-body text-[1.2rem] font-semibold leading-none tracking-[-0.02em] text-boutique-maroon [font-variant-numeric:tabular-nums]">
                   {selectedOrders}
                 </p>
               </div>
               <div className="rounded-[1.45rem] bg-boutique-background p-4">
                 <p className="text-[10px] uppercase tracking-[0.24em] text-boutique-gold">Peak Hour</p>
-                <p className="mt-3 font-section text-[1.4rem] leading-none tracking-[-0.03em] text-boutique-maroon">
+                <p className="mt-3 font-body text-[1.05rem] font-semibold leading-none tracking-[-0.02em] text-boutique-maroon">
                   {busiestHour ? hourLabel(busiestHour.hour) : 'No orders'}
                 </p>
                 <p className="mt-2 text-sm text-boutique-ink/58">

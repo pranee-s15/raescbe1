@@ -49,10 +49,11 @@ const ProductPage = () => {
   }
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 md:px-8">
+    <section className="mx-auto max-w-7xl px-4 py-16 md:px-6 lg:px-8">
       <BackButton fallbackTo="/collections" label="Back" />
-      <div className="grid gap-8 lg:grid-cols-[0.88fr,1.12fr] lg:items-start">
-        <div className="overflow-hidden rounded-[1.75rem] bg-white p-3 shadow-soft">
+      <div className="flex min-w-max items-start gap-4 ...">
+        <div className="flex flex-col items-start gap-4 lg:grid lg:grid-cols-[0.88fr,1.12fr] lg:gap-8 lg:items-start">
+        <div className="min-w-[240px] overflow-hidden rounded-[1.55rem] bg-white p-3 shadow-soft md:min-w-[360px] md:rounded-[1.75rem] lg:min-w-0">
           <ProductImage
             product={product}
             fit="contain"
@@ -61,11 +62,11 @@ const ProductPage = () => {
           />
         </div>
 
-        <div className="space-y-6">
+        <div className="min-w-[260px] space-y-6 lg:min-w-0">
           <SectionHeading eyebrow={product.fabric} title={product.name} description="" />
           <div className="space-y-2">
-            <p className="text-3xl font-semibold text-boutique-maroon">{formatCurrency(product.price)}</p>
-            <p className="text-sm uppercase tracking-[0.32em] text-boutique-gold">{product.category}</p>
+            <p className="text-2xl font-semibold text-boutique-maroon md:text-3xl">{formatCurrency(product.price)}</p>
+            <p className="text-sm uppercase tracking-[0.24em] text-boutique-gold md:tracking-[0.32em]">{product.category}</p>
             <p className="max-w-2xl text-sm leading-7 text-boutique-ink/70">{product.description}</p>
           </div>
 
@@ -103,6 +104,7 @@ const ProductPage = () => {
               Buy Now
             </button>
           </div>
+        </div>
         </div>
       </div>
     </section>

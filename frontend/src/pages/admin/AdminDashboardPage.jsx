@@ -248,26 +248,26 @@ const AdminDashboardPage = () => {
   return (
     <section className="min-h-screen bg-boutique-background px-4 py-8 md:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col gap-6 rounded-[2rem] bg-[linear-gradient(135deg,#6B0F1A,#4a0912_62%,#2b050b)] p-8 text-white shadow-luxe lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-6 rounded-[2rem] bg-[linear-gradient(135deg,#6B0F1A,#4a0912_62%,#2b050b)] p-6 text-white shadow-luxe md:p-8">
           <div>
             <div className="flex items-center gap-4">
               <LogoMark className="h-16 w-16" />
               <div>
                 <p className="text-[10px] uppercase tracking-[0.34em] text-boutique-gold">Admin Dashboard</p>
-                <h1 className="mt-2 font-section text-[2.2rem] leading-tight tracking-[-0.02em] text-white md:text-[2.8rem]">
+                <h1 className="mt-2 font-section text-[2rem] leading-tight tracking-[-0.02em] text-white md:text-[2.55rem]">
                   Raes Boutique Control Center
                 </h1>
                 {isDemoMode ? <p className="mt-2 text-sm text-white/72">Demo admin mode is active.</p> : null}
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex gap-3 overflow-x-auto pb-1">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-full px-5 py-3 text-sm transition ${
+                className={`shrink-0 rounded-full px-5 py-3 text-sm transition ${
                   activeTab === tab
                     ? 'bg-boutique-gold text-boutique-maroon shadow-[0_10px_26px_rgba(212,175,55,0.22)]'
                     : 'bg-white/10 text-white hover:bg-white/18'
@@ -282,7 +282,7 @@ const AdminDashboardPage = () => {
                 logout();
                 navigate('/');
               }}
-              className="rounded-full bg-white px-5 py-3 text-sm text-boutique-maroon"
+              className="shrink-0 rounded-full bg-white px-5 py-3 text-sm font-medium text-boutique-maroon transition hover:bg-boutique-gold"
             >
               Logout
             </button>
@@ -354,7 +354,7 @@ const AdminDashboardPage = () => {
                 {products.map((product) => (
                   <div key={product._id} className="rounded-[2rem] border border-boutique-gold/10 bg-white p-5 shadow-soft">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-boutique-gold">{product.category}</p>
-                    <h3 className="mt-3 font-section text-[1.45rem] leading-tight tracking-[-0.02em] text-boutique-maroon">
+                    <h3 className="mt-3 font-section text-[1.3rem] leading-tight tracking-[-0.02em] text-boutique-maroon">
                       {product.name}
                     </h3>
                     <p className="mt-2 text-sm font-medium text-boutique-maroon/85">Rs. {product.price}</p>

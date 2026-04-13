@@ -14,12 +14,19 @@ import { ensureSampleProducts } from './utils/seedProducts.js';
 dotenv.config();
 
 const app = express();
+const configuredOrigins = [
+  process.env.CLIENT_URL,
+  ...(process.env.CLIENT_URLS || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+].filter(Boolean);
 
 app.use(
   cors({
     origin(origin, callback) {
       const allowedOrigins = new Set([
-        process.env.CLIENT_URL || 'http://localhost:5173',
+        ...configuredOrigins,
         'http://localhost:5173',
         'http://127.0.0.1:5173'
       ]);

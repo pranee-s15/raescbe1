@@ -12,6 +12,7 @@ const CollectionsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filterOpen, setFilterOpen] = useState(false);
 
   const filters = useMemo(
     () => ({
@@ -25,6 +26,12 @@ const CollectionsPage = () => {
     }),
     [searchParams]
   );
+
+  const [draftFilters, setDraftFilters] = useState(filters);
+
+  useEffect(() => {
+    setDraftFilters(filters);
+  }, [filters]);
 
   useEffect(() => {
     const query = new URLSearchParams();
@@ -41,9 +48,9 @@ const CollectionsPage = () => {
       .finally(() => setLoading(false));
   }, [filters]);
 
-  const updateFilters = (next) => {
+  const applyFilters = (nextFilters = draftFilters) => {
     const params = new URLSearchParams(searchParams);
-    Object.entries(next).forEach(([key, value]) => {
+    Object.entries(nextFilters).forEach(([key, value]) => {
       if (value) {
         params.set(key, value);
       } else {
@@ -53,13 +60,35 @@ const CollectionsPage = () => {
     setSearchParams(params);
   };
 
+  const updateDraftFilters = (next) => {
+    setDraftFilters((current) => ({
+      ...current,
+      ...next
+    }));
+  };
+
+  const resetFilters = () => {
+    const clearedFilters = {
+      search: '',
+      color: '',
+      fabric: '',
+      category: '',
+      sort: 'latest',
+      minPrice: '',
+      maxPrice: ''
+    };
+
+    setDraftFilters(clearedFilters);
+    setSearchParams(new URLSearchParams());
+  };
+
   const activePrice = priceRanges.find(
-    (range) => String(range.min) === filters.minPrice && String(range.max) === filters.maxPrice
+    (range) => String(range.min) === draftFilters.minPrice && String(range.max) === draftFilters.maxPrice
   );
 
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-16 pt-16 md:px-8">
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section className="mx-auto max-w-7xl px-4 pb-16 pt-16 md:px-6 lg:px-8 overflow-x-hidden">
+      <div className="flex flex-wrap items-end justify-between gap-4 md:gap-6">
         <SectionHeading
           eyebrow="Collections"
           title="Luxury boutique collections"
@@ -70,13 +99,28 @@ const CollectionsPage = () => {
         </div>
       </div>
 
-      <div className="mt-10 grid gap-6 xl:grid-cols-[250px,1fr]">
-        <aside className="h-fit self-start space-y-5 rounded-[1.6rem] bg-white p-5 shadow-soft">
-          <div>
+     <div className="mt-10 grid items-start gap-4 grid-cols-1 xl:grid-cols-[250px,minmax(0,1fr)] xl:gap-6">
+        <aside className="sticky top-28 z-20 h-fit self-start rounded-[1.35rem] bg-white p-3 shadow-soft md:rounded-[1.6rem] md:p-5">
+          <div className="flex items-center justify-between gap-3 xl:hidden">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.32em] text-boutique-gold">Filters</p>
+              <p className="mt-1 text-xs text-boutique-ink/60">Search, sort, color, fabric and price</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setFilterOpen((current) => !current)}
+              className="rounded-full bg-boutique-background px-4 py-2 text-xs font-medium text-boutique-maroon"
+            >
+              {filterOpen ? 'Hide' : 'Show'}
+            </button>
+          </div>
+
+          <div className={`${filterOpen ? 'mt-3 grid' : 'hidden'} gap-3 md:grid-cols-2 xl:mt-0 xl:grid xl:grid-cols-1 xl:gap-5`}>
+          <div className="md:col-span-2 xl:col-span-1">
             <p className="text-xs uppercase tracking-[0.36em] text-boutique-gold">Search</p>
             <input
-              value={filters.search}
-              onChange={(event) => updateFilters({ search: event.target.value })}
+              value={draftFilters.search}
+              onChange={(event) => setDraftFilters((current) => ({ ...current, search: event.target.value }))}
               placeholder="Find a boutique style"
               className="mt-3 w-full rounded-xl bg-boutique-background px-3.5 py-2.5 text-sm outline-none ring-1 ring-transparent transition focus:ring-boutique-gold"
             />
@@ -85,8 +129,8 @@ const CollectionsPage = () => {
           <label className="block">
             <span className="text-xs uppercase tracking-[0.36em] text-boutique-gold">Sort</span>
             <select
-              value={filters.sort}
-              onChange={(event) => updateFilters({ sort: event.target.value })}
+              value={draftFilters.sort}
+              onChange={(event) => updateDraftFilters({ sort: event.target.value })}
               className="mt-3 w-full rounded-xl bg-boutique-background px-3.5 py-2.5 text-sm outline-none"
             >
               <option value="latest">New to Old</option>
@@ -97,8 +141,8 @@ const CollectionsPage = () => {
           <label className="block">
             <span className="text-xs uppercase tracking-[0.36em] text-boutique-gold">Category</span>
             <select
-              value={filters.category}
-              onChange={(event) => updateFilters({ category: event.target.value })}
+              value={draftFilters.category}
+              onChange={(event) => updateDraftFilters({ category: event.target.value })}
               className="mt-3 w-full rounded-xl bg-boutique-background px-3.5 py-2.5 text-sm outline-none"
             >
               <option value="">All Categories</option>
@@ -113,8 +157,8 @@ const CollectionsPage = () => {
           <label className="block">
             <span className="text-xs uppercase tracking-[0.36em] text-boutique-gold">Fabric</span>
             <select
-              value={filters.fabric}
-              onChange={(event) => updateFilters({ fabric: event.target.value })}
+              value={draftFilters.fabric}
+              onChange={(event) => updateDraftFilters({ fabric: event.target.value })}
               className="mt-3 w-full rounded-xl bg-boutique-background px-3.5 py-2.5 text-sm outline-none"
             >
               <option value="">All Fabrics</option>
@@ -129,8 +173,8 @@ const CollectionsPage = () => {
           <label className="block">
             <span className="text-xs uppercase tracking-[0.36em] text-boutique-gold">Color</span>
             <select
-              value={filters.color}
-              onChange={(event) => updateFilters({ color: event.target.value })}
+              value={draftFilters.color}
+              onChange={(event) => updateDraftFilters({ color: event.target.value })}
               className="mt-3 w-full rounded-xl bg-boutique-background px-3.5 py-2.5 text-sm outline-none"
             >
               <option value="">All Colors</option>
@@ -142,15 +186,15 @@ const CollectionsPage = () => {
             </select>
           </label>
 
-          <div>
+          <div className="md:col-span-2 xl:col-span-1">
             <span className="text-xs uppercase tracking-[0.36em] text-boutique-gold">Price</span>
-            <div className="mt-3 flex flex-col gap-3">
+            <div className="mt-3 grid grid-cols-2 gap-2.5 xl:grid-cols-1 xl:gap-3">
               {priceRanges.map((range) => (
                 <button
                   key={range.label}
                   type="button"
                   onClick={() =>
-                    updateFilters({
+                    updateDraftFilters({
                       minPrice: String(range.min),
                       maxPrice: String(range.max)
                     })
@@ -164,26 +208,37 @@ const CollectionsPage = () => {
                   {range.label}
                 </button>
               ))}
-              <button
-                type="button"
-                onClick={() => setSearchParams(new URLSearchParams())}
-                className="rounded-xl bg-boutique-background px-3.5 py-2.5 text-left text-sm text-boutique-maroon"
-              >
-                Clear all filters
-              </button>
             </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+            <button
+              type="button"
+              onClick={() => applyFilters()}
+              className="rounded-xl bg-boutique-maroon px-3.5 py-2.5 text-sm font-medium text-white transition hover:bg-[#580c16]"
+            >
+              Apply
+            </button>
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="rounded-xl bg-boutique-background px-3.5 py-2.5 text-sm text-boutique-maroon transition hover:bg-boutique-gold/20"
+            >
+              Reset
+            </button>
+          </div>
           </div>
         </aside>
 
-        <div>
+        <div className="min-w-0">
           {loading ? (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-4">
               {Array.from({ length: 6 }).map((_, index) => (
                 <div key={index} className="h-[290px] animate-pulse rounded-[1.4rem] bg-white shadow-soft" />
               ))}
             </div>
           ) : products.length ? (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-4">
               {products.map((product) => (
                 <ProductCard
                   key={product._id}
